@@ -4,10 +4,10 @@
 void init_scoreboard(scoreboard board)
 {
 	int i;
-	
+
 	for(i = 0; i < SCOREBOARDSIZE; i++){
 		strcpy(board[i].name, "");
-		 
+
 			board[i].counters = '\0';
 	}
 }
@@ -15,7 +15,7 @@ void init_scoreboard(scoreboard board)
 void display_scores(const scoreboard board)
 {
 	int i;
-	
+
 	printf("%-20s%s\n","| Player","| Scores");
 	printf("_________________________________________\n");
 
@@ -27,7 +27,7 @@ void display_scores(const scoreboard board)
 	}
 }
 /*function that adds player to scoreboard*/
-BOOLEAN add_to_scoreboard(scoreboard board, const score * sc) 
+BOOLEAN add_to_scoreboard(scoreboard board, const score * sc)
 {
     int minimum = 1;
     int i, position = 0;
@@ -43,7 +43,7 @@ BOOLEAN add_to_scoreboard(scoreboard board, const score * sc)
     	if(board[i].counters == 0){
  			board[i] = *sc;
  			sorted(board);
- 		
+
 		return EXIT_SUCCESS;
 		}
   	}	/*if the board is full remove the min score and add new one and sort*/
@@ -53,24 +53,24 @@ BOOLEAN add_to_scoreboard(scoreboard board, const score * sc)
 
 		return EXIT_SUCCESS;
   		}
-  
-    return FALSE; 
+
+    return FALSE;
 }
 
 BOOLEAN sorted(scoreboard board){
 	score tempScore;
     int j,k;
-    	/*goes through the scoreboard and moves structs into postion based on 
+    	/*goes through the scoreboard and moves structs into postion based on
     		score*/
 		for(j = 0; j < SCOREBOARDSIZE; j++){
     	for(k = 0; k < SCOREBOARDSIZE - 1; k++){
-    		if(board[k].counters < board[k+1].counters){
-    			
-    			tempScore = board[k+1]; 
+    		if(board[k].counters > board[k+1].counters){
+
+    			tempScore = board[k+1];
     			board[k+1] = board[k];
-    			board[k] = tempScore;	
+    			board[k] = tempScore;
     		}
     	}
-	} 
+	}
 	return FALSE;
 }
